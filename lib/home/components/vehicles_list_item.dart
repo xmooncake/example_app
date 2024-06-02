@@ -1,4 +1,5 @@
 import 'package:example_app/data/models/vehicle.dart';
+import 'package:example_app/details/details.screen.dart';
 import 'package:flutter/material.dart';
 
 class VehiclesListItem extends StatelessWidget {
@@ -8,9 +9,17 @@ class VehiclesListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(vehicle.name),
-      subtitle: Text(vehicle.licensePlate),
+    return Card(
+      child: ListTile(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => DetailsScreen(vehicle: vehicle),
+          ),
+        ),
+        title: Text(vehicle.name),
+        subtitle: Text(vehicle.licensePlate),
+        trailing: const Icon(Icons.arrow_forward_ios),
+      ),
     );
   }
 }
